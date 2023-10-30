@@ -1,0 +1,28 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+
+PortSystem          1.0
+PortGroup           github 1.0
+PortGroup           meson 1.0
+
+github.setup        tifrueh lv95-converter 1.1.0 v
+github.tarball_from releases
+
+revision            0
+categories          science math
+platforms           darwin
+license             GPL-3.0-or-later
+maintainers         {@tifrueh icloud.com:timo.frueh}
+description         convert LV95 to WGS84 and vice versa
+
+long_description    Convert Swiss LV95 coordinates to international WGS84 coordinates \
+                    and vice versa
+
+distname            ${github.project}-v${github.version}
+
+homepage            https://github.com/tifrueh/lv95-converter
+checksums           rmd160  ea13e532632573f7b6d11d21f953d579104374c3 \
+                    sha256  96f4782b84fb6bb26d1dceeb813dc321300eb3fe28b6aa49b7df75a67a74a5c6 \
+                    size    16701
+depends_build       port:cli11
+
