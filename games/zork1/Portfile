@@ -1,0 +1,44 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                zork1
+version             88
+revision            0
+categories          games
+platforms           darwin
+license             ZORK-EULA
+maintainers         {@tifrueh icloud.com:timo.frueh}
+description         Zork I adventure game
+
+long_description    This port uses frotz and a shell script to run the original Zork I by Infocom
+
+homepage            https://eblong.com/infocom/
+master_sites        https://eblong.com/infocom/gamefiles
+distname            zork1
+distfiles           zork1-r88-s840726.z3 LICENSE zork1
+
+checksums           zork1-r88-s840726.z3 \
+                        rmd160 d99785506f8d1c435867aba52dd386e33fecd0f4 \
+                        sha256 158f1f63b1302591bbce30e1ec23b17909d2a66e39403ed14593a75280b1e7f9 \
+                        size 84876 \
+
+depends_run         port:frotz
+
+extract {
+    xinstall -d -m 755 ${worksrcpath}
+    copy ${distpath}/zork1-r88-s840726.z3 ${worksrcpath}/zork1-r88-s840726.z3
+    copy ${filespath}/LICENSE ${worksrcpath}/LICENSE
+    copy ${filespath}/zork1 ${worksrcpath}/zork1
+}
+
+use_configure       no
+
+build {}
+
+destroot {
+    xinstall -d -m 755 ${destroot}${prefix}/share/${name}/ ${destroot}${prefix}/bin
+    xinstall -m 644 ${worksrcpath}/zork1-r88-s840726.z3 ${destroot}${prefix}/share/${name}/ZORKI
+    xinstall -m 644 ${worksrcpath}/LICENSE ${destroot}${prefix}/share/${name}/LICENSE
+    xinstall -m 755 ${worksrcpath}/zork1 ${destroot}${prefix}/bin/zork1
+}

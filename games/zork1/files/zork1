@@ -1,0 +1,11 @@
+#!/bin/sh
+
+savesdir="${HOME}/.local/share/zork1/SAVE"
+z3file="/opt/local/share/zork1/ZORKI"
+
+# make saves directory if it does not exist yet
+mkdir -p -- "${savesdir}"
+
+# start frotz
+frotz -R "${savesdir}" "${z3file}"
+

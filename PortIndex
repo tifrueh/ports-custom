@@ -1,5 +1,7 @@
 the-chosen-remastered 508
 variants universal depends_build {port:meson port:ninja} portdir games/the-chosen-remastered description {a short ZORK-like text adventure} homepage https://github.com/tifrueh/the-chosen-remastered epoch 0 platforms darwin name the-chosen-remastered depends_lib port:ncurses license GPL-3.0-or-later maintainers {{@tifrueh icloud.com:timo.frueh}} long_description {The C++/ncurses remastered variant of a short ZORK-like text adventure originally written in python} categories games version 1.0.1 revision 0
+zork1 353
+portdir games/zork1 description {Zork I adventure game} homepage https://eblong.com/infocom/ depends_run port:frotz epoch 0 platforms darwin name zork1 license ZORK-EULA maintainers {{@tifrueh icloud.com:timo.frueh}} long_description {This port uses frotz and a shell script to run the original Zork I by Infocom} version 88 categories games revision 0
 aria2 607
 variants {cares gnutls openssl sqlite3 universal} depends_build {port:pkgconfig port:gettext} portdir net/aria2 description {download utility with resuming and segmented downloading} homepage https://github.com/aria2/aria2 epoch 0 platforms darwin name aria2 depends_lib {port:gettext-runtime port:libiconv port:libuv port:libxml2} license {{GPL-2+ OpenSSLException}} maintainers {{mps @Schamschula}} long_description {aria2 is a download utility with resuming and segmented downloading. Supported protocols are HTTP/HTTPS/FTP/BitTorrent.} depends_extract bin:xz:xz categories net version 1.36.0 revision 3
 lv95-converter 469
