@@ -1,6 +1,6 @@
 # ports
 
-This is my MacPorts portfile repo for
+This is my MacPorts portfile repository for
 
 1. My own software
 
