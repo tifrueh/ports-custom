@@ -4,6 +4,7 @@ PortSystem          1.0
 
 name                ookla-speedtest
 version             1.2.0
+revision            1
 categories          net
 platforms           darwin
 maintainers         {@tifrueh icloud.com:timo.frueh}
@@ -13,15 +14,16 @@ long_description    Speedtest CLI by Ookla is the official command line client f
                     testing the speed and performance of your internet connection.
 
 homepage            https://www.speedtest.net/apps/cli
+license             speedtest.net-EULA
 master_sites        https://install.speedtest.net/app/cli/
-distname            ookla-speedtest-1.2.0-macosx-universal
+distname            ookla-speedtest-${version}-macosx-universal
 extract.suffix      .tgz
 extract.mkdir       yes
 checksums           rmd160 26ddcf87df4b920900cf919beefb9057b05c34fc \
                     sha256 c9f8192149ebc88f8699998cecab1ce144144045907ece6f53cf50877f4de66f \
                     size 1074443
 
-conflicts           port:speedtest-cli
+conflicts           speedtest-cli
 
 use_configure       no
 
@@ -32,6 +34,7 @@ test.run            no
 destroot {
     system -W ${worksrcpath} "gzip -k speedtest.5"
     xinstall -m 755 ${worksrcpath}/speedtest ${destroot}${prefix}/bin/speedtest
+    system -W ${destroot}${prefix}/bin "ln -s ./speedtest ookla-speedtest"
     xinstall -m 755 -d ${destroot}${prefix}/share/man/man5
     xinstall -m 444 ${worksrcpath}/speedtest.5.gz ${destroot}${prefix}/share/man/man5/speedtest.5
 }
