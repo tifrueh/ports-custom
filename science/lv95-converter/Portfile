@@ -5,7 +5,7 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           meson 1.0
 
-github.setup        tifrueh lv95-converter 1.1.0 v
+github.setup        tifrueh lv95-converter 1.1.1 v
 github.tarball_from releases
 
 revision            0
@@ -21,8 +21,10 @@ long_description    Convert Swiss LV95 coordinates to international WGS84 coordi
 distname            ${github.project}-v${github.version}
 
 homepage            https://github.com/tifrueh/lv95-converter
-checksums           rmd160  ea13e532632573f7b6d11d21f953d579104374c3 \
-                    sha256  96f4782b84fb6bb26d1dceeb813dc321300eb3fe28b6aa49b7df75a67a74a5c6 \
-                    size    16701
-depends_build       port:cli11
+checksums           rmd160  1b3418b06e7d28cf0830cdf17cac296735085c0c \
+                    sha256  a1bef9b7aa8b146cee6faa9da5438a3e0bcd7451dfa76600ae2aeea7f2a9bb86 \
+                    size    16694
+depends_build       port:cli11 \
+                    port:meson \
+                    port:pkgconfig
 
