@@ -8,10 +8,10 @@ PortGroup           meson 1.0
 github.setup        tifrueh the-chosen-remastered 1.0.1 v
 github.tarball_from releases
 
-revision            0
+revision            1
 categories          games
 platforms           darwin
-license             GPL-3.0-or-later
+license             GPL-3.0+
 maintainers         {@tifrueh icloud.com:timo.frueh}
 description         a short ZORK-like text adventure
 
