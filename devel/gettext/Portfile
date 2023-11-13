@@ -149,8 +149,9 @@ subport ${name}-tools-libs {
     long_description        ${subport} provides the required libraries \
                             for tools like msgfmt from gettext
 
+    depends_build-append    port:ncurses
+
     depends_lib-append      port:libiconv \
-                            port:ncurses \
                             port:libtextstyle \
                             port:gettext-runtime
 
@@ -178,7 +179,7 @@ subport ${name}-tools-libs {
 
     destroot.dir            ${worksrcpath}/${name}-tools
 
-   post-destroot {
+    post-destroot {
         # Remove the executables and the libraries provided
         # by the runtime. Just leave the libraries and headers
         # for the tools.
@@ -201,6 +202,8 @@ if {${subport} eq ${name}} {
                             are required to build applications which use \
                             gettext. The runtime library libintl is in \
                             the separate gettext-runtime port.
+
+    depends_build-append    port:ncurses
 
     depends_lib-append      port:libiconv \
                             port:libtextstyle \
