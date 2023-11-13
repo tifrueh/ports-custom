@@ -177,7 +177,9 @@ subport ${name}-tools-libs {
     # https://savannah.gnu.org/bugs/?58669
     configure.args-append   --disable-libasprintf
 
-    destroot.dir            ${worksrcpath}/${name}-tools
+    # Install from the tools subpackage, so that only its files
+    # are installed
+     destroot.dir           ${worksrcpath}/${name}-tools
 
     post-destroot {
         # Remove the executables and the libraries provided
@@ -234,6 +236,8 @@ if {${subport} eq ${name}} {
     # https://savannah.gnu.org/bugs/?58669
     configure.args-append   --disable-libasprintf
 
+    # Install from the tools subpackage, so that only its files
+    # are installed
     destroot.dir            ${worksrcpath}/${name}-tools
 
     post-destroot {
