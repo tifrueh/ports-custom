@@ -4,7 +4,7 @@ PortSystem          1.0
 
 name                zork1
 version             88
-revision            2
+revision            3
 license             unknown/none
 categories          games
 platforms           darwin
@@ -28,10 +28,14 @@ checksums           ${name}-r${version}-s840726.z3 \
 
 depends_run         port:frotz
 
+post-fetch {
+    file copy -force -- ${filespath}/${name} ${distpath}/${name}
+}
+
 extract {
     file mkdir ${worksrcpath}
-    file copy ${distpath}/${name}-r${version}-s840726.z3 ${worksrcpath}/${name}-r${version}-s840726.z3
-    file copy ${distpath}/${name} ${worksrcpath}/${name}
+    file copy -force -- ${distpath}/${name}-r${version}-s840726.z3 ${worksrcpath}/${name}-r${version}-s840726.z3
+    file copy -force -- ${distpath}/${name} ${worksrcpath}/${name}
 }
 
 use_configure       no
