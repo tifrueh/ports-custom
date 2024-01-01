@@ -178,13 +178,12 @@ subport ${name}-tools-libs {
     configure.args-append   --disable-libasprintf
 
     # Install from the tools subpackage, so that only its files
-    # are installed
+    # are installed.
      destroot.dir           ${worksrcpath}/${name}-tools
 
     post-destroot {
-        # Remove the executables and the libraries provided
-        # by the runtime. Just leave the libraries and headers
-        # for the tools.
+        # Remove the executables provided by the gettext subport. 
+        # Just leave the libraries and headers for the tools.
         delete {*}[glob ${destroot}${prefix}/bin/*] \
             {*}[glob ${destroot}${prefix}/share/*]
     }
@@ -237,17 +236,14 @@ if {${subport} eq ${name}} {
     configure.args-append   --disable-libasprintf
 
     # Install from the tools subpackage, so that only its files
-    # are installed
+    # are installed.
     destroot.dir            ${worksrcpath}/${name}-tools
 
     post-destroot {
-        # Remove files already installed by gettext-runtime.
-        # https://savannah.gnu.org/bugs/?58669
         # Remove the libraries and headers which are provided
         # by gettext-tools-libs
         delete {*}[glob ${destroot}${prefix}/lib/*] \
-            {*}[glob ${destroot}${prefix}/include/*] \
-            ${destroot}${prefix}/share/locale/locale.alias
+            {*}[glob ${destroot}${prefix}/include/*] 
     }
 
     livecheck.type      regex
