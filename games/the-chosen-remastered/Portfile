@@ -5,8 +5,10 @@ PortSystem          1.0
 PortGroup           github 1.0
 PortGroup           meson 1.0
 
-github.setup        tifrueh the-chosen-remastered 1.0.1 v
+github.setup        tifrueh the-chosen-remastered 1.0.2 v
 github.tarball_from releases
+
+use_xz              true
 
 revision            1
 categories          games
@@ -19,8 +21,8 @@ long_description    The C++/ncurses remastered variant of a short ZORK-like text
                     originally written in python
 
 homepage            https://github.com/tifrueh/the-chosen-remastered
-checksums           rmd160  59c1d6330ca21a6c477f87d511ede7bbd1363037 \
-                    sha256  d3f0e54d2e36fc956579535d21721b1873b3763662a4baf3befe893ee8e79f20 \
-                    size    117189
+checksums           rmd160  bee0575217a21d5818a04c3d1b0cf7ee525f9ecc \
+                    sha256  25ba4529eb981bd94f46279a540dc57151ebc126c9118f41510f101311dc4ac0 \
+                    size    88588
 depends_lib         port:ncurses
 
