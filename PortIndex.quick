@@ -3,7 +3,7 @@ gettext 454
 the-chosen-remastered 1217
 zork1 1769
 gettext-runtime 2158
-gettext-tools-libs 2857
-lv95-converter 3415
-libasprintf 3947
-libtextstyle 4457
+lv95-converter 2857
+libasprintf 3389
+libtextstyle 3899
+gettext-tools-libs 4483
