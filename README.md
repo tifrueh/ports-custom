@@ -1,12 +1,4 @@
-# ports
+# ports-custom
 
-This is my MacPorts portfile repository for
-
-1. My own software
-
-1. Custom versions of existing portfiles
-
-1. Newer versions of outdated portfiles
-
-1. Experimentation
-
+This repository contains MacPorts portfiles which I didn't write myself but
+wanted improve the portfile of, or create one for.
