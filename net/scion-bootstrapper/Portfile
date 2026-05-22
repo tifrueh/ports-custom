@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+
+PortGroup               golang 1.0
+
+go.setup                github.com/netsec-ethz/bootstrapper 0.0.8 v
+
+name                    scion-bootstrapper
+
+categories              net
+maintainers             @tifrueh
+description             SCION bootstrapper daemon
+long_description        A bootstrapper for SCION network configuration using hints \
+                        from available zeroconf services to discover the IP address \
+                        and port of the local discovery server.
+homepage                https://github.com/netsec-ethz/bootstrapper
+platforms               darwin
+license                 none
+
+# Allow fetching deps at build time for now
+go.offline_build        no
+
+checksums               rmd160 db22a728ab2e4b1c0d3d2893d84ef950a1c0d794 \
+                        sha256 361ab3c1a8d95fdedf1873c788c1b87aab08a93114312a1ea22c03d1845afa3a \
+                        size 51797
+
+pre-build {
+    system -W ${worksrcpath} "go get -u"
+}
+
+destroot {
+    xinstall -d -m 755 ${destroot}${prefix}/etc/scion
+    xinstall -m 755 ${worksrcpath}/bootstrapper ${destroot}${prefix}/bin/scion-bootstrapper
+    xinstall -m 744 ${filespath}/bootstrapper.toml ${destroot}${prefix}/etc/scion/bootstrapper.toml.sample
+}
