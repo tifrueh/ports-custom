@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem 1.0
+
+name                viperserver
+version             26.02
+description         HTTP server for the Viper tool stack
+long_description    This is ViperServer, an HTTP server that manages \
+                    verification requests to different tools from the Viper tool \
+                    stack.
+categories          devel science
+maintainers         @tifrueh
+homepage            https://github.com/viperproject/viperserver/
+platforms           darwin
+license             MPL-2.0 Apache-2.0 EPL-2.0
+
+depends_lib         port:openjdk11-zulu
+depends_build       port:sbt
+
+fetch.type          git
+git.url             https://github.com/viperproject/viperserver.git
+git.branch          tags/v.${version}-release
+
+post-fetch {
+    system -W ${worksrcpath} "git submodule update --progress --init --recursive"
+}
+
+use_configure       no
+
+build.env-append    JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11-zulu/Contents/Home \
+                    SBT_OPTS=-Duser.home=${worksrcpath}/.home
+build.cmd           sbt
+build.target        assembly
+
+destroot {
+    xinstall -m 755 ${filespath}/viperserver.sh ${destroot}${prefix}/bin/${name}
+    xinstall -m 755 -d ${destroot}${prefix}/share/${name}/bin/
+    xinstall -m 744 ${worksrcpath}/target/scala-2.13/viperserver.jar ${destroot}${prefix}/share/${name}/bin/${name}.jar
+}
