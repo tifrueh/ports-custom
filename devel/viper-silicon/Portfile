@@ -4,8 +4,7 @@ PortSystem 1.0
 
 name                viper-silicon
 version             26.02
-description         Symbolic-execution-based verifier for the Viper \
-                    intermediate verification language.
+description         Symbolic-execution-based verifier for Viper
 long_description    Silicon is a state-of-the-art, automated verifier based on \
                     symbolic execution, and the default verifier of the Viper \
                     verification infrastructure.
