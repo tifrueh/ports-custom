@@ -1,0 +1,32 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+
+PortGroup               golang 1.0
+
+go.setup                github.com/scionproto/scion 0.15.0 v
+
+name                    scion-tools
+
+categories              net
+maintainers             @tifrueh
+description             SCION tools
+long_description        The 'scion' and 'scion-pki' command line tools.
+homepage                https://github.com/scionproto/scion
+platforms               darwin
+license                 none
+
+# Allow fetching deps at build time for now
+go.offline_build        no
+
+checksums               rmd160 472e966e46d5064005a53173f1a3ec34b2fbe30c \
+                        sha256 1bcf6fb9c63d48efeaad4cdb165d1c52559949be0b7082c8a0bf2e9e864024fd \
+                        size 8232407
+
+build.target            -o ${worksrcpath}/bin ${worksrcpath}/scion/... ${worksrcpath}/scion-pki/...
+
+destroot {
+    xinstall -d -m 755 ${destroot}${prefix}/etc/scion
+    xinstall -m 755 ${worksrcpath}/bin/scion ${destroot}${prefix}/bin/scion
+    xinstall -m 755 ${worksrcpath}/bin/scion-pki ${destroot}${prefix}/bin/scion-pki
+}
