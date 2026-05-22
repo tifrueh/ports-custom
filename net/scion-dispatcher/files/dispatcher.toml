@@ -1,0 +1,53 @@
+[features]
+    # Feature flags are various boolean properties as defined in go/lib/env/features.go
+
+[log]
+    [log.console]
+        # Console logging level (debug|info|error) (default info)
+        level = "info"
+
+        # Log a stacktrace for all messages at or above the given level. If the value
+        # is 'none', no stacktrace is included. (debug|info|error|none) (default none)
+        stacktrace_level = "none"
+
+        # Logging format (human|json) (default human)
+        format = "human"
+
+        # Disable annotating logs with the calling function's file name and line number.
+        # (default false)
+        disable_caller = false
+
+[metrics]
+    # The address to export prometheus metrics on (host:port or ip:port or :port).
+    # The prometheus metrics can be found under /metrics, furthermore pprof
+    # endpoints are exposed see (https://golang.org/pkg/net/http/pprof/).
+    # If not set, metrics are not exported. (default "")
+    prometheus = ""
+
+[api]
+    # The address to expose the API on (host:port or ip:port).
+    # If not set, the API is not exposed.
+    addr = ""
+
+[dispatcher]
+    # ID of the Dispatcher. (required)
+    id = "dispatcher"
+
+    # The underlay IP address opened by the dispatcher. (default ::)
+    underlay_addr = "0.0.0.0"
+
+    # Do local UDP forwarding.
+    local_udp_forwarding = true
+
+    # ServiceAddresses is the map of IA,SVC -> underlay UDP/IP address.
+    # The map should be configured provided that the shim dispatcher runs colocated to such
+    # mapped services, e.g., the shim dispatcher runs on the same host,
+    # where the CS for the local IA runs. 
+    # For other use cases it can be ignored.
+    #[dispatcher.service_addresses]
+    #"1-ff00:0:110,CS" = "[fd00:f00d:cafe::7f00:14]:31000"
+    #"1-ff00:0:110,DS" = "[fd00:f00d:cafe::7f00:14]:31000"
+    #"1-ff00:0:120,CS" = "127.0.0.68:31008"
+    #"1-ff00:0:120,DS" = "127.0.0.68:31008"
+    #"1-ff00:0:130,CS" = "[fd00:f00d:cafe::7f00:2b]:31016"
+    #"1-ff00:0:130,DS" = "[fd00:f00d:cafe::7f00:2b]:31016"
