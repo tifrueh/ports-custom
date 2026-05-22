@@ -19,6 +19,10 @@ license                 none
 # Allow fetching deps at build time for now
 go.offline_build        no
 
+depends_run-append      port:scion-bootstrapper \
+                        port:scion-daemon \
+                        port:scion-dispatcher
+
 checksums               rmd160 472e966e46d5064005a53173f1a3ec34b2fbe30c \
                         sha256 1bcf6fb9c63d48efeaad4cdb165d1c52559949be0b7082c8a0bf2e9e864024fd \
                         size 8232407
