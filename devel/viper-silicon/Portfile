@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem 1.0
+
+name                viper-silicon
+version             26.02
+description         Symbolic-execution-based verifier for the Viper \
+                    intermediate verification language.
+long_description    Silicon is a state-of-the-art, automated verifier based on \
+                    symbolic execution, and the default verifier of the Viper \
+                    verification infrastructure.
+categories          devel science
+maintainers         @tifrueh
+homepage            https://github.com/viperproject/silicon/
+platforms           darwin
+license             MPL-2.0
+
+depends_lib         port:openjdk11-zulu
+depends_build       port:sbt
+
+fetch.type          git
+git.url             https://github.com/viperproject/silicon.git
+git.branch          tags/v.${version}-release
+
+post-fetch {
+    system -W ${worksrcpath} "git submodule update --progress --init --recursive"
+}
+
+use_configure       no
+
+build.env-append    JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk11-zulu/Contents/Home \
+                    SBT_OPTS=-Duser.home=${worksrcpath}/.home
+build.cmd           sbt
+build.target        assembly
+
+destroot {
+    xinstall -m 755 ${filespath}/viper-silicon.sh ${destroot}${prefix}/bin/${name}
+    xinstall -m 755 -d ${destroot}${prefix}/share/${name}/bin/
+    xinstall -m 744 ${worksrcpath}/target/scala-2.13/silicon.jar ${destroot}${prefix}/share/${name}/bin/${name}.jar
+}
