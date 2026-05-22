@@ -1,0 +1,104 @@
+[general]
+    # The ID of the service. (required)
+    id = "sd"
+
+    # Directory for loading AS information, certs, keys, path policy, topology.
+    config_dir = "/opt/local/etc/scion"
+
+[features]
+    # Feature flags are various boolean properties as defined in go/lib/env/features.go
+
+[log]
+    [log.console]
+        # Console logging level (debug|info|error) (default info)
+        level = "info"
+
+        # Log a stacktrace for all messages at or above the given level. If the value
+        # is 'none', no stacktrace is included. (debug|info|error|none) (default none)
+        stacktrace_level = "none"
+
+        # Logging format (human|json) (default human)
+        format = "human"
+
+        # Disable annotating logs with the calling function's file name and line number.
+        # (default false)
+        disable_caller = false
+
+[metrics]
+    # The address to export prometheus metrics on (host:port or ip:port or :port).
+    # The prometheus metrics can be found under /metrics, furthermore pprof
+    # endpoints are exposed see (https://golang.org/pkg/net/http/pprof/).
+    # If not set, metrics are not exported. (default "")
+    prometheus = ""
+
+[api]
+    # The address to expose the API on (host:port or ip:port).
+    # If not set, the API is not exposed.
+    addr = ""
+
+[tracing]
+    # Enable the tracing. (default false)
+    enabled = false
+    # Enable debug mode. (default false)
+    debug = false
+    # Address of the local agent that handles the reported traces.
+    # (default: localhost:6831)
+    agent = "localhost:6831"
+
+[trust_db]
+    # Connection for the database.
+    connection = "/opt/local/share/scion/data/sd.trust.db"
+
+    # The maximum number of open read connections to the database. In case of 0,
+    # the limit is not set and uses a sane default. (default 0)
+    max_open_read_conns = 0
+
+    # The maximum number of idle read connections to the database. In case of 0,
+    # the limit is not set and uses a sane default. (default 0)
+    max_idle_read_conns = 0
+
+[path_db]
+    # Connection for the database.
+    connection = "/opt/local/share/scion/cache/sd.path.db"
+
+    # The maximum number of open read connections to the database. In case of 0,
+    # the limit is not set and uses a sane default. (default 0)
+    max_open_read_conns = 0
+
+    # The maximum number of idle read connections to the database. In case of 0,
+    # the limit is not set and uses a sane default. (default 0)
+    max_idle_read_conns = 0
+
+[sd]
+    # Address where the SCION Daemon server API is exposed. (default 127.0.0.1:30255)
+    address = "127.0.0.1:30255"
+
+    # Disable segment verification of the daemon. This can be done if it runs in
+    # the same trust zone as the control service. (default false)
+    disable_seg_verification = false
+
+    # The time after which segments for a destination are refetched. (default 5m)
+    query_interval = "5m"
+
+    # The configuration containing hidden path groups. (default "")
+    hidden_path_groups =  ""
+
+[trustengine]
+    [trustengine.cache]
+        # Disable caching.
+        disable = false
+
+        # Maximum cache expiration.
+        expiration = "1m"
+
+[drkey_level2_db]
+    # Connection for the database.
+    connection = "/opt/local/share/scion/cache/sd.drkey_level2.db"
+
+    # The maximum number of open read connections to the database. In case of 0,
+    # the limit is not set and uses a sane default. (default 0)
+    max_open_read_conns = 0
+
+    # The maximum number of idle read connections to the database. In case of 0,
+    # the limit is not set and uses a sane default. (default 0)
+    max_idle_read_conns = 0

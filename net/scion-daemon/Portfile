@@ -1,0 +1,34 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem              1.0
+
+PortGroup               golang 1.0
+
+go.setup                github.com/scionproto/scion 0.15.0 v
+
+name                    scion-daemon
+
+categories              net
+maintainers             @tifrueh
+description             SCION daemon
+long_description        The scion-daemon and the scion-dispatcher together form the end host SCION stack.
+homepage                https://github.com/scionproto/scion
+platforms               darwin
+license                 none
+
+# Allow fetching deps at build time for now
+go.offline_build        no
+
+checksums               rmd160 472e966e46d5064005a53173f1a3ec34b2fbe30c \
+                        sha256 1bcf6fb9c63d48efeaad4cdb165d1c52559949be0b7082c8a0bf2e9e864024fd \
+                        size 8232407
+
+build.target            -o ${worksrcpath}/bin ${worksrcpath}/daemon/...
+
+destroot {
+    xinstall -d -m 755 ${destroot}${prefix}/etc/scion
+    xinstall -d -m 755 ${destroot}${prefix}/share/scion/data
+    xinstall -d -m 755 ${destroot}${prefix}/share/scion/cache
+    xinstall -m 755 ${worksrcpath}/bin/daemon ${destroot}${prefix}/bin/scion-daemon
+    xinstall -m 744 ${filespath}/daemon.toml ${destroot}${prefix}/etc/scion/daemon.toml.sample
+}
