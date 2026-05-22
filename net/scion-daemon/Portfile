@@ -31,4 +31,6 @@ destroot {
     xinstall -d -m 755 ${destroot}${prefix}/share/scion/cache
     xinstall -m 755 ${worksrcpath}/bin/daemon ${destroot}${prefix}/bin/scion-daemon
     xinstall -m 744 ${filespath}/daemon.toml ${destroot}${prefix}/etc/scion/daemon.toml.sample
+    xinstall -m 744 ${filespath}/.keepdir ${destroot}${prefix}/share/scion/data/.keepdir
+    xinstall -m 744 ${filespath}/.keepdir ${destroot}${prefix}/share/scion/cache/.keepdir
 }
